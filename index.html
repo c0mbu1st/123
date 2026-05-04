@@ -3,17 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KPI 2026 GitHub Pages Template</title>
+    <title>KPI Note Taker</title>
+    <meta name="description" content="A simple, elegant note taking app" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="container">
-      <h1>KPI 2026 GitHub Pages Template</h1>
-      <p>This repository is a starter template for small coursework web applications.</p>
-      <p>Add markdown requirements under <code>requirements/</code>, then run the skill to turn this into a real app.</p>
-      <button id="reset-demo" type="button">Reset demo message</button>
-      <p id="status" class="status"></p>
+    <header class="header">
+      <div class="container header-content">
+        <h1>Note Taker</h1>
+        <div class="actions">
+          <button id="reset-demo" class="btn btn-secondary">Reset Demo Data</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container layout">
+      <aside class="sidebar">
+        <form id="note-form" class="card note-form">
+          <h2 id="form-title">Create Note</h2>
+          <input type="hidden" id="note-id" />
+          <div class="form-group">
+            <label for="note-title">Title</label>
+            <input type="text" id="note-title" required minlength="3" maxlength="50" placeholder="Note title" />
+          </div>
+          <div class="form-group">
+            <label for="note-text">Text</label>
+            <textarea id="note-text" required maxlength="500" placeholder="Write your note here..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="note-tags">Tags (comma or space separated)</label>
+            <input type="text" id="note-tags" placeholder="work, ideas, urgent" />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Save Note</button>
+            <button type="button" class="btn btn-text hidden" id="cancel-edit-btn">Cancel Edit</button>
+          </div>
+        </form>
+      </aside>
+
+      <section class="main-content">
+        <div class="controls">
+          <div class="tabs">
+            <button class="tab active" data-tab="active">Active Notes</button>
+            <button class="tab" data-tab="archive">Archive</button>
+          </div>
+          <div class="search-filter">
+            <input type="text" id="search-input" placeholder="Search in title..." />
+            <input type="text" id="tag-filter-input" placeholder="Filter by tag..." />
+          </div>
+        </div>
+
+        <div id="notes-container" class="notes-grid">
+          <!-- Notes will be rendered here -->
+        </div>
+        <div id="empty-state" class="empty-state hidden">
+          <p id="empty-state-text">No notes found.</p>
+        </div>
+      </section>
     </main>
+
     <script type="module" src="./src/app.js"></script>
   </body>
 </html>
